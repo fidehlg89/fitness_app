@@ -4,23 +4,8 @@ import './styles/Card.css'
 
 class Card extends React.Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            image: require('../images/test.jpg')
-        }
-    }
-
-    componentDidMount() {
-        setTimeout(()=>{
-            this.setState({
-                image: require('../images/exercise.png')
-            })
-        },5000)
-    }
-
     render() {
-        const { title, description, leftColor, rightColor } = this.props
+        const { title, description, img, leftColor, rightColor } = this.props
         return (
             <div className="card mx-auto Fitness-Card"
                 style={{
@@ -29,7 +14,7 @@ class Card extends React.Component {
                 <div className="card-body">
                     <div className="row center">
                         <div className="col-6">
-                            <img src={this.state.image} alt='' className="float-right" />
+                            <img src={img} alt='' className="float-right" />
                         </div>
                         <div className="col-6 Fitness-Card-Info">
                             <h1>{title}</h1>

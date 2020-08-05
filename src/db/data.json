@@ -1,0 +1,22 @@
+[{
+    "id": "1",
+    "title": "Techniques Guides",
+    "description": "Learn Amazing streap workout and calishtecnics",
+    "img": "../images/exercise.png",
+    "leftColor": "#A74CF2",
+    "rightColor": "#617BFB"
+},{
+    "id": "2",
+    "title": "Skills Training",
+    "description": "Learn the secrets of bodyweight techniques",
+    "img": "../images/exercise.png",
+    "leftColor": "#17EAD9",
+    "rightColor": "#6078EA"
+},{
+    "id": "3",
+    "title": "Strength Training",
+    "description": "Train anytime, everywere and become a superhero",
+    "img": "../images/exercise.png",
+    "leftColor": "#FAD961",
+    "rightColor": "#F76B1C"
+}]

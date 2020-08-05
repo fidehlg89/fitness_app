@@ -1,25 +1,17 @@
-//Forma antigua
-/*const element=document.createElement('h1');
-element.innerText='Hello React..'
-const container=document.getElementById('root');
-container.appendChild(element)*/
-
 import React from 'react';
 import ReactDOM from 'react-dom'
 import Card from './components/Card'
+import Welcome from './components/Welcome'
+import 'bootstrap/dist/css/bootstrap.css'
 
-/* Primeros pasos 
-const user={
-    firstname: 'Fidel Ernesto',
-    lastname: 'Alonso Ochoa'
-}
-
-function getName(user){
-    return `${user.firstname} ${user.lastname}`
-}
-const name = 'Ernesto'
-const element=<h1>Hola, {getName(user)}</h1>
-*/
-
-const container=document.getElementById('root');
-ReactDOM.render(<Card />, container);
+const container = document.getElementById('root');
+ReactDOM.render(<div>
+                    <Welcome username="Ernesto"
+                    />
+                    <Card
+                        title="Techniques Guides"
+                        description="Learn Amazing streap workout and calishtecnics"
+                        leftColor="#A74CF2"
+                        rightColor="#617BFB "
+                    />
+                </div>, container);

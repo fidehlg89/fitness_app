@@ -1,19 +1,22 @@
 import React from 'react'
 import ExerciseForm from '../components/ExerciseForm'
 import Card from '../components/Card'
-import '../components/styles/ExerciseNew.css'
 
-const ExerciseNew = ({form, onChange, onSubmit}) => (
+const ExerciseNew = ({form, onChange, onSubmit, editing}) => (
     <div className="ExerciseNew_Lateral_Spaces row">
         <div className="col-sm ExerciseNew_Card_Space">
-            <Card {...form} />
+            <Card 
+                {...form}                
+                editing={editing}
+            />
         </div>
         <div className="col-sm ExerciseNew_Form_Space">
             <ExerciseForm
                 onChange={onChange}
                 onSubmit={onSubmit}
                 form={form}
-            />
+                editing={editing}
+            />            
         </div>
     </div>
 )

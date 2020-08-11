@@ -2,53 +2,22 @@ import React from 'react'
 import ExerciseForm from '../components/ExerciseForm'
 import Card from '../components/Card'
 
-class ExerciseView extends React.Component {
-
-    state = {
-        form: {
-            title: '',
-            description: '',
-            img: '',
-            leftColor: '',
-            rightColor: '',
-        }
-    }
-
-    handleSubmit = async e => {
-        e.preventDefault()
-        try {
-            await fetch('http://localhost:8000/api/exercises/1')
-            this.setState = ({
-                loading: false,
-            })
-        } catch (error) {
-
-        }
-    }
-
-    handleChange = e => {
-        this.setState({
-            form: {
-                ...this.state.form,
-                [e.target.name]: e.target.value
-            }
-        })
-    }
-
-    render() {
-        return (
-            <React.Fragment>
-                <Card {...this.state.form} />
-                <ExerciseForm
-                    onChange={this.handleChange}
-                    onSubmit={this.handleSubmit}
-                    form={this.state.form}
-                />
-            </React.Fragment>
-        )
-    }
-
-
-}
+const ExerciseView = ({form, onChange, onSubmit, editing}) => (
+    <div className="ExerciseNew_Lateral_Spaces row">
+        <div className="col-sm ExerciseNew_Card_Space">
+            <Card 
+                {...form}
+                editing={editing}
+            />
+        </div>
+        <div className="col-sm ExerciseNew_Form_Space">
+            <ExerciseForm                
+                form={form} 
+                onChange={onChange}
+                onSubmit={onSubmit}
+            />            
+        </div>
+    </div>
+)
 
 export default ExerciseView

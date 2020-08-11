@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import Card from '../components/Card'
+import Card from './Card'
 
 const ExerciseList = ({exercises}) => (
     <Fragment>
@@ -11,5 +11,6 @@ const ExerciseList = ({exercises}) => (
         ))}
     </Fragment>    
 )
+
 
 export default ExerciseList

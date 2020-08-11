@@ -1,11 +1,12 @@
 import React from 'react'
+import './styles/AddButton.css'
+import buttomImg from '../images/add.png'
 import { Link } from 'react-router-dom'
-import '../components/styles/AddButton.css'
 
-const AddButton = () => 
+const AddButton = () => (
     <Link to="/exercise/new">
-        <img src={require('../images/add.png')} alt="" className="Fitness-Add" />
+        <img src={buttomImg} className="Fitness-Add" alt="exercise"/>
     </Link>
-
+)
 
 export default AddButton

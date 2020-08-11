@@ -1,20 +1,21 @@
 import React, { useState } from 'react'
-import '../components/styles/ExerciseNew.css'
 import Loading from '../components/Loading'
 import FatalError from './500'
-import ExerciseNew from './ExerciseNew'
+import ExerciseView from './ExerciseView'
 import url from '../config'
+import { useParams } from 'react-router'
+import useFetch from '../hooks/useFetch'
 
-const ExerciseNewContainer = ({ history }) => {
-    const [form, setForm] = useState({
+const ExercisesViewContainer = ({ history }) => {
+    const { id } = useParams()
+    let { data, loading, error } = useFetch(`${url}/exercises/${id}`)
+    let [form, setForm] = useState({
         title: '',
         description: '',
         img: '',
         leftColor: '',
         rightColor: ''
     })
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null)
 
     const handleChange = e => {
         setForm({
@@ -24,23 +25,23 @@ const ExerciseNewContainer = ({ history }) => {
     }
 
     const handleSubmit = async e => {
-        setLoading(true)
+        loading = true
         e.preventDefault()
         try {
             let config = {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(form)
             }
-            await fetch(`${url}/exercises`, config)
-            setLoading(false)
+            await fetch(`${url}/exercises/update/${id}`, config)
+            loading = false
             history.push('/exercise')
+            console.log('updated')
         } catch (error) {
-            setLoading(false)
-            setError(error)
+            loading = false
         }
     }
 
@@ -51,14 +52,15 @@ const ExerciseNewContainer = ({ history }) => {
         return <FatalError />
 
     return (
-        <div className="container"><ExerciseNew
-            form={form}
-            onChange={handleChange}
-            onSubmit={handleSubmit}
-            editing={true}
-        />
+        <div className="container">
+            <ExerciseView
+                form={form}
+                onChange={handleChange}
+                onSubmit={handleSubmit}
+                editing={true}
+            />
         </div>
     )
 }
 
-export default ExerciseNewContainer
+export default ExercisesViewContainer

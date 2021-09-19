@@ -8,13 +8,10 @@ import Loading from './Loading'
 import FatalError from '../pages/500'
 
 const Card = ({ id, title, description, img, leftColor, rightColor, editing }) => {
-
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
     const handleDelete = async (e) => {
-        setLoading(true)
-        e.preventDefault()
         try {
             let config = {
                 method: 'DELETE',
@@ -23,15 +20,14 @@ const Card = ({ id, title, description, img, leftColor, rightColor, editing }) =
                     'Content-Type': 'application/json'
                 },
             }
-            await fetch(`${url}/exercises/delete/${id}`, config)
+            await fetch(`${url}/exercises/${id}`, config)
             setLoading(false)
-            window.location.reload(false)
+            window.location.reload();
         } catch (error) {
             setLoading(false)
             setError(error)
         }
     }
-
 
     if (loading)
         return <Loading />
@@ -56,12 +52,12 @@ const Card = ({ id, title, description, img, leftColor, rightColor, editing }) =
                         {editing ? (
                             ''
                         ) : (
-                                <div className="float-right">
-                                    <Link to={"/exercise/edit/" + id}>
-                                        <button className="btn btn-link btn-sm text-white" ><i className="fa fa-pencil"></i></button>
-                                    </Link>
-                                    <button className="btn btn-link btn-sm text-white" onClick={handleDelete}><i className="fa fa-trash"></i></button>
-                                </div>
+                            <div className="float-right">
+                            <Link to={"/exercise/edit/" + id}>
+                                <button className="btn btn-link btn-sm text-white" title="Update this exercise"><i className="fa fa-pencil"></i></button>
+                            </Link>
+                            <button className="btn btn-link btn-sm text-white" title="Delete this exercise" onClick={handleDelete}><i className="fa fa-trash"></i></button>
+                        </div>
                             )
                         }
                     </div>

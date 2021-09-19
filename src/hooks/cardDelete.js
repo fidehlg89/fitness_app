@@ -10,7 +10,7 @@ const cardDelete = (url) => {
             setLoading(true)
             e.preventDefault()
             try {
-                await fetch(`${url}exercises/delete` + this.props.id)
+                await fetch(`${url}exercises/` + this.props.id)
                 setLoading(false)
                 window.location.reload()
             } catch (error) {

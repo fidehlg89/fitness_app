@@ -6,16 +6,16 @@ import useFetch from '../hooks/useFetch'
 import url from '../config'
 
 const ExercisesContainer = () => {
-    const { data, loading, error } = useFetch(`${url}/exercises`)
+    const { data, loading, error } = useFetch(`${url}/exercises`);
 
     if(loading)
         return <Loading />
-            
+
     if(error)
         return <FatalError />
 
     return <Exercises
-        data={data}            
+        data={data}
     />
 }
 

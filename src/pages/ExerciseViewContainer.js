@@ -1,25 +1,35 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Loading from '../components/Loading'
 import FatalError from './500'
 import ExerciseView from './ExerciseView'
 import url from '../config'
 import { useParams } from 'react-router'
-import useFetch from '../hooks/useFetch'
 
 const ExercisesViewContainer = ({ history }) => {
-    const { id } = useParams()
-    let { data, loading, error } = useFetch(`${url}/exercises/${id}`)
-    let [form, setForm] = useState({
-        title: '',
-        description: '',
-        img: '',
-        leftColor: '',
-        rightColor: ''
-    })
+    const { id } = useParams();
+    const [data, setData] = useState([])
+    let [loading, setLoading] = useState(true)
+    let [error, setError] = useState(null)
+
+    useEffect(() => {
+        const fetchResource = async (id) => {
+            try {
+                let res = await fetch(`${url}/exercises/${id}`);
+                let data = await res.json();
+                console.log(data.exercise)
+                setData(data.exercise);
+                setLoading(false);
+            } catch (error) {
+                setLoading(false);
+                setError(error);
+            }
+        }
+        fetchResource(id)
+    }, [id])
 
     const handleChange = e => {
-        setForm({
-            ...form,
+        setData({
+            ...data,
             [e.target.name]: e.target.value
         })
     }
@@ -34,12 +44,18 @@ const ExercisesViewContainer = ({ history }) => {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(form)
+                body: JSON.stringify({
+                    "title": data.title,
+                    "description": data.description,
+                    "img": data.img,
+                    "leftColor": data.leftColor,
+                    "rightColor": data.rightColor
+                })
             }
-            await fetch(`${url}/exercises/update/${id}`, config)
+            await fetch(`${url}/exercises/${id}`, config)
             loading = false
             history.push('/exercise')
-            console.log('updated')
+            console.log(data)
         } catch (error) {
             loading = false
         }
@@ -54,7 +70,7 @@ const ExercisesViewContainer = ({ history }) => {
     return (
         <div className="container">
             <ExerciseView
-                form={form}
+                form={data}
                 onChange={handleChange}
                 onSubmit={handleSubmit}
                 editing={true}

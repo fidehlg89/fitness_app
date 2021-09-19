@@ -5,8 +5,8 @@ import Card from '../components/Card'
 const ExerciseNew = ({form, onChange, onSubmit, editing}) => (
     <div className="ExerciseNew_Lateral_Spaces row">
         <div className="col-sm ExerciseNew_Card_Space">
-            <Card 
-                {...form}                
+            <Card
+                {...form}
                 editing={editing}
             />
         </div>
@@ -16,7 +16,7 @@ const ExerciseNew = ({form, onChange, onSubmit, editing}) => (
                 onSubmit={onSubmit}
                 form={form}
                 editing={editing}
-            />            
+            />
         </div>
     </div>
 )

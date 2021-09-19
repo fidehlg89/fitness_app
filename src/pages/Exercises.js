@@ -4,16 +4,18 @@ import ExerciseList from '../components/ExerciseList'
 import AddButtom from '../components/AddButton'
 
 
-const Exercises = ({data}) => (
-    <Fragment>
-        <Welcome 
-            username="Ernesto"
-        />
-        <ExerciseList 
-            exercises={data}
-        />
-        <AddButtom />
-    </Fragment>
-)
+const Exercises = ({ data }) => {
+    return (
+        <Fragment>
+            <Welcome
+                username="Ernesto"
+            />
+            <ExerciseList
+                exercises={data}
+            />
+            <AddButtom />
+        </Fragment>
+    )
+}
 
 export default Exercises

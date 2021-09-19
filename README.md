@@ -1,3 +1,6 @@
+### FitnessApp
+React App based on RPL project with some adjust to use new functions as update and delete the scpecific fitness
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

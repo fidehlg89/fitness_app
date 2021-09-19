@@ -4,12 +4,12 @@ import Card from '../components/Card'
 const ExerciseList = ({exercises}) => (
     <Fragment>
         { exercises.map((exercise) => (
-            <Card 
+            <Card
                 key={exercise.id}
                 {...exercise}
             />
         ))}
-    </Fragment>    
+    </Fragment>
 )
 
 export default ExerciseList
